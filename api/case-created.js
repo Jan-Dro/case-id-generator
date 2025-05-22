@@ -1,5 +1,8 @@
+export const config = {
+  runtime: 'nodejs18.x',
+}
+
 export default function handler(req, res) {
-    // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -8,7 +11,6 @@ export default function handler(req, res) {
     
     console.log('Case created page accessed:', id);
     
-    // Return HTML response
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send(`
         <!DOCTYPE html>
@@ -16,28 +18,10 @@ export default function handler(req, res) {
         <head>
             <title>Case Created Successfully</title>
             <style>
-                body { 
-                    font-family: Arial, sans-serif; 
-                    padding: 20px; 
-                    background: #f5f5f5; 
-                    margin: 0;
-                }
-                .container { 
-                    background: white; 
-                    padding: 20px; 
-                    border-radius: 8px; 
-                    max-width: 500px; 
-                    margin: 0 auto; 
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                }
+                body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+                .container { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; }
                 .success { color: #28a745; }
-                .case-id { 
-                    font-family: monospace; 
-                    background: #f8f9fa; 
-                    padding: 10px; 
-                    border-radius: 4px; 
-                    word-break: break-all;
-                }
+                .case-id { font-family: monospace; background: #f8f9fa; padding: 10px; border-radius: 4px; word-break: break-all; }
             </style>
         </head>
         <body>
@@ -47,9 +31,6 @@ export default function handler(req, res) {
                 <div class="case-id">${id}</div>
                 <p><strong>Timestamp:</strong> ${new Date(parseInt(timestamp)).toLocaleString()}</p>
                 <p><strong>Status:</strong> ${status}</p>
-                <p><strong>Current URL:</strong></p>
-                <div class="case-id">${req.headers.host}${req.url}</div>
-                
                 <script>
                     console.log('Case page loaded');
                     console.log('Case ID:', '${id}');
