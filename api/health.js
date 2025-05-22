@@ -1,3 +1,7 @@
+export const config = {
+  runtime: 'nodejs18.x',
+}
+
 export default function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     
